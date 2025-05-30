@@ -4,10 +4,7 @@ import pickle
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
-
-# Paths
-DATA_PATH = "data/iris.csv"
-MODEL_PATH = "models/model.pkl"
+from app.config import DATA_PATH, MODEL_PATH
 
 def train():
     # Load data
@@ -29,7 +26,7 @@ def train():
     print(f"✅ Model trained with accuracy: {acc:.4f}")
 
     # Save model
-    os.makedirs("models", exist_ok=True)
+    os.makedirs(os.path.dirname(MODEL_PATH), exist_ok=True)
     with open(MODEL_PATH, "wb") as f:
         pickle.dump(model, f)
 
